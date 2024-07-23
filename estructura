@@ -1,0 +1,14 @@
+flask_app/
+│
+├── app.py
+├── models/
+│   └── paquete.py
+├── controllers/
+│   └── paquete_controller.py
+├── views/
+│   └── paquete_view.py
+├── templates/
+│   └── index.html
+│   └── paquetes.html
+│   └── paquete.html
+└── static/

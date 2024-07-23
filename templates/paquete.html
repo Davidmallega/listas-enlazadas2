@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle del Paquete</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/paquete.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/background1.css') }}">
+</head>
+<body>
+    <br>
+    <div class="container">
+        <h1>Paquete {{ paquete.codigo_seguimiento }}</h1>
+        <p>Origen: {{ paquete.origen }}</p>
+        <p>Destino: {{ paquete.destino }}</p>
+        <p>Estado: {{ paquete.estado }}</p>
+        <a href="{{ url_for('index') }}">Volver</a>
+    </div>
+</body>
+</html>

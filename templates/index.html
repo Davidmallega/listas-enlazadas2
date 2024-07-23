@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestión de Paquetes</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/background2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <header>
+        <!-- Puedes agregar un título o un logo aquí si lo deseas -->
+    </header>
+    <div class="container">
+        <h1>Gestión de Paquetes</h1>
+        <form method="get" action="{{ url_for('buscar_paquete') }}">
+            <input type="text" name="codigo" placeholder="Buscar por código">
+            <button type="submit">Buscar</button>
+        </form>
+        <a href="{{ url_for('agregar_paquete') }}">Agregar Paquete</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for paquete in paquetes %}
+                <tr>
+                    <td><a href="{{ url_for('mostrar_paquete', codigo_seguimiento=paquete.codigo_seguimiento) }}">{{ paquete.codigo_seguimiento }}</a></td>
+                    <td>{{ paquete.origen }}</td>
+                    <td>{{ paquete.destino }}</td>
+                    <td>{{ paquete.estado }}</td>
+                    <td>
+                        <a href="{{ url_for('eliminar_paquete', codigo_seguimiento=paquete.codigo_seguimiento) }}">Eliminar</a>
+                        <a href="{{ url_for('actualizar_paquete', codigo_seguimiento=paquete.codigo_seguimiento) }}">Actualizar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br><br>
+        <a href="{{ url_for('inicio') }}" class="btn1">Volver a Inicio</a>
+    </div>
+</body>
+</html>

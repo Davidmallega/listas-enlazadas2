@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if actualizar %}Actualizar Paquete{% else %}Agregar Paquete{% endif %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/paquete_form.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/background2.css') }}">
+</head>
+<body>
+    <br>
+    <div class="container">
+        <h1>{% if actualizar %}Actualizar Paquete{% else %}Agregar Paquete{% endif %}</h1>
+        <form method="post">
+            <label>Código de Seguimiento:</label>
+            <input type="text" name="codigo_seguimiento" value="{{ paquete.codigo_seguimiento if actualizar else '' }}" {% if actualizar %}readonly{% endif %}><br>
+            <label>Origen:</label>
+            <input type="text" name="origen" value="{{ paquete.origen if actualizar else '' }}"><br>
+            <label>Destino:</label>
+            <input type="text" name="destino" value="{{ paquete.destino if actualizar else '' }}"><br>
+            <label>Estado:</label>
+            <select name="estado" required>
+                <option value="" disabled {% if not paquete %}selected{% endif %}>Elegir estado</option>
+                <option value="enviado" {% if paquete and paquete.estado == 'enviado' %}selected{% endif %}>Enviado</option>
+                <option value="recibido" {% if paquete and paquete.estado == 'recibido' %}selected{% endif %}>Recibido</option>
+                <option value="eliminado" {% if paquete and paquete.estado == 'eliminado' %}selected{% endif %}>Eliminado</option>
+                <option value="devuelto" {% if paquete and paquete.estado == 'devuelto' %}selected{% endif %}>Devuelto</option>
+                <option value="perdido" {% if paquete and paquete.estado == 'perdido' %}selected{% endif %}>Perdido</option>
+                <option value="en transito" {% if paquete and paquete.estado == 'en transito' %}selected{% endif %}>En tránsito</option>
+            </select><br>
+            <button type="submit">{% if actualizar %}Actualizar{% else %}Agregar{% endif %}</button>
+        </form>
+        <a href="{{ url_for('index') }}">Volver</a>
+    </div>
+</body>
+</html>
